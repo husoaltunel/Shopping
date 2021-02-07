@@ -15,7 +15,6 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Cart
         public ActionResult Index()
         {
-
             return View(GetCart());
         }
         public Cart GetCart()
