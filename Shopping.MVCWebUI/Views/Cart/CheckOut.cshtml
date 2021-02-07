@@ -3,13 +3,19 @@
     ViewBag.Title = "CheckOut";
 }
 
+@if (TempData["fullNameError"] != null)
+{
+    <div class="alert alert-danger">
+        <h4>@TempData["fullNameError"]<i class="fas fa-exclamation" style="font-size: 28px;"></i></h4>
+    </div>
+}
 @if (ViewBag.message == "success")
 {
     <div class="alert alert-success">
         <h4>Siparişiniz tamamlandı ve onay için beklemede <i class="fas fa-exclamation" style="font-size: 28px;"></i></h4>
     </div>
 }
-else if(ViewBag.message == "error")
+else if (ViewBag.message == "error")
 {
     <div class="alert alert-danger">
         <h4>Bir Hata Oluştu <i class="fas fa-exclamation" style="font-size: 28px;"></i></h4>
@@ -35,13 +41,7 @@ else if(ViewBag.message == "error")
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Adı Soyadı</label>
                 <div class="col-sm-6">
-                    @Html.TextBoxFor(shipping => shipping.AddressTitle, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Adres</label>
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(shipping => shipping.Address, new { @class = "form-control" })
+                    @Html.TextBoxFor(shipping => shipping.FullName, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
@@ -51,21 +51,33 @@ else if(ViewBag.message == "error")
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">İlçe</label>
                 <div class="col-sm-6">
                     @Html.TextBoxFor(shipping => shipping.District, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Ödeme Şekli</label>
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Adres</label>
                 <div class="col-sm-6">
-                    @Html.TextBoxFor(shipping => shipping.Neighborhood, new { @class = "form-control" })
+                    @Html.TextBoxFor(shipping => shipping.Address, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">E-mail</label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(shipping => shipping.Email, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Telefon </label>
                 <div class="col-sm-6">
-                    @Html.TextBoxFor(shipping => shipping.ZipCode, new { @class = "form-control" })
+                    @Html.TextBoxFor(shipping => shipping.PhoneNumber, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Ödeme Yöntemi</label>
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(shipping => shipping.PaymentMethod, new { @class = "form-control" })
                 </div>
             </div>
 

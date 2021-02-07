@@ -33,6 +33,7 @@ namespace Shopping.MVCWebUI.Controllers
                     DiscountedPrice = prd.DiscountedPrice,
                     CampaignStatus = prd.CampaignStatus,
                     Stock = prd.Stock,
+                    QuantitySold = prd.QuantitySold,
                     Image = prd.DefaultImage ?? "nullimage.png",
                     SubCategoryId = prd.SubCategoryId,
                     SubCategory = prd.SubCategory,
@@ -43,7 +44,7 @@ namespace Shopping.MVCWebUI.Controllers
                     }
                 }).AsQueryable();
 
-
+            ViewBag.productsBestSeller = products.OrderByDescending(prd => prd.QuantitySold).Take((int)productCountPerPage).ToList();
             ViewBag.productsAtCampaign = products.Where(prd => prd.CampaignStatus == true && prd.DiscountedPrice != 0).ToList();
 
             if (id != null)

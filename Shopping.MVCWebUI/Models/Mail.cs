@@ -21,29 +21,29 @@ namespace Shopping.MVCWebUI.Models
 
         }
 
-        private string createBody(Cart cart, MailDetails mailDetails)
+        private string createBody(Cart cart, ShippingDetails details)
         {
-            body = "<h5>" + "<u style='color:blue;'>" + "Kullanıcı Adı : " + "</u>" + mailDetails.UserName + "</h5>" +
-                   "<h5>" + "<u style='color:blue;'>" + "Adı Soyadı :  " + "</u>" + mailDetails.FullName + "</h5>"+
-                   "<h5>" + "<u style='color:blue;'>" + "Adres :  " + "</u>" + mailDetails.Address + "</h5>"+
-                   "<h5>" + "<u style='color:blue;'>" + "Şehir :  " + "</u>" + mailDetails.City + "</h5>"+
-                   "<h5>" + "<u style='color:blue;'>" + "E-Mail :  " + "</u>" + mailDetails.District + "</h5>"+
-                   "<h5>" + "<u style='color:blue;'>" + "Ödeme Şekli :  " + "</u>" + mailDetails.Neighborhood + "</h5>"+
-                   "<h5>" + "<u style='color:blue;'>" + "Telefon :  " + "</u>" + mailDetails.ZipCode + "</h5>";
+            body = "<h5>" + "<u style='color:blue;'>" + "Kullanıcı Adı : " + "</u>" + details.UserName + "</h5>" +
+                   "<h5>" + "<u style='color:blue;'>" + "Adı Soyadı :  " + "</u>" + details.FullName + "</h5>"+                  
+                   "<h5>" + "<u style='color:blue;'>" + "Şehir :  " + "</u>" + details.City + "</h5>"+
+                   "<h5>" + "<u style='color:blue;'>" + "E-Mail :  " + "</u>" + details.District + "</h5>"+
+                   "<h5>" + "<u style='color:blue;'>" + "Adres :  " + "</u>" + details.Address + "</h5>" +
+                   "<h5>" + "<u style='color:blue;'>" + "Ödeme Şekli :  " + "</u>" + details.PaymentMethod + "</h5>"+
+                   "<h5>" + "<u style='color:blue;'>" + "Telefon :  " + "</u>" + details.PhoneNumber + "</h5>";
 
             foreach (var cLine in cart.CartLines)
-            {
-                body += "<h5>" + "<u style='color:red;margin-right:1rem;'>" + "ID :    " + cLine.Product.Id + "</u>" + " Ürün İsmi :    " + cLine.Product.Name + "<u style='color:red;margin-left:1rem;'>" + " Adet : " + cLine.Quantity + "</u>";
+            {               
+                body += "<h5>" + "<u style='color:red;margin-right:1rem;'>" + "ID :    " + cLine.Product.Id + "</u>" + " Ürün İsmi :    " + cLine.Product.Name + "<u style='color:red;margin-left:1rem;'>" + " Adet : " + cLine.Quantity + "</u>" + "<u style='color:red;margin-left:1rem;'>" + " Toplam = " + cLine.Quantity * cLine.Product.Price + " TL" + "</u>";
             }
-
+            body += "<h5>" + "<u style='color:blue;'>" + "Genel Toplam =  " + "</u>" + "<u style='color:red;margin-left:1rem;'>"+ cart.TotalPrice() + " TL" + "</u>" + "</h5>";
             return body;
         }
 
-        public void sendMail(Cart cart, MailDetails mailDetails)
+        public void sendMail(Cart cart, ShippingDetails details)
         {
             try
             {
-                createBody(cart, mailDetails);
+                createBody(cart, details);
 
                 // siparişlerin geleceği mail adresi
                 WebMail.Send(

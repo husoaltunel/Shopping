@@ -35,7 +35,7 @@ namespace Shopping.MVCWebUI.Controllers
                 GetCart().AddProduct(product, 1);
             }
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult RemoveFromCart(int Id)
         {
@@ -63,17 +63,21 @@ namespace Shopping.MVCWebUI.Controllers
                 if (cart.CartLines.Count() != 0)
                 {
                     var mail = new Mail();
+
+                    if (Session["userFullName"] == null)
+                    {
+                        TempData["fullNameError"] = "Lütfen tekrar giriş yapmayı deneyiniz";
+                        return RedirectToAction("CheckOut");
+                    }
                     var userFullName = Session["userFullName"].ToString();
-
-
-                    MailDetails mailDetails = new MailDetails() {FullName = userFullName, UserName = details.UserName, AddressTitle = details.AddressTitle, Address = details.Address,  City = details.City, District = details.District, Neighborhood = details.Neighborhood, ZipCode = details.ZipCode }; 
-                    mail.sendMail(cart,mailDetails);
+                    details.FullName = userFullName;
+                    mail.sendMail(cart, details);
                     ViewBag.mailException = mail.exception;
                     if (String.IsNullOrEmpty(ViewBag.mailException))
                     {
                         ViewBag.message = "success";
                         SaveOrder(cart, details);
-                        DecreaseStocks(cart.CartLines);                        
+                        DecreaseStocks(cart.CartLines);
                     }
                     else
                     {
@@ -101,7 +105,6 @@ namespace Shopping.MVCWebUI.Controllers
             order.OrderState = EnumOrderState.Waiting;
 
             order.UserName = User.Identity.Name;
-            order.AddressTitle = details.AddressTitle;
             order.Address = details.Address;
             order.City = details.City;
             order.District = details.District;
