@@ -1,0 +1,131 @@
+﻿@model Shopping.MVCWebUI.Entity.Product
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="/Upload/@Model.DefaultImage" class="detailImage img-fluid" alt="@Model.Name">
+        @if (Model.Images != null)
+        {
+            var listImages = Model.Images.Split(',').ToList();
+            listImages.Remove(listImages[0]);
+            listImages.Remove("");
+
+            foreach (var image in listImages)
+            {
+                <img src="/Upload/@image" class="detailImage img-fluid">
+            }
+        }
+    </div>
+    <div class="col-md-6">
+        <h2>@Model.Name</h2>
+
+        @if (Model.Stock > 0)
+        {
+            <span class="badge badge-primary">
+                Stokta @Model.Stock.ToString() adet var
+            </span>
+        }
+        else
+        {
+            <span class="badge badge-danger">
+                Tükendi
+            </span>
+        }
+        <span class="product-number">#@Model.Id</span>
+        <div id="description" class="mt-2">
+            @Model.Description
+        </div>
+        <div class="row mt-2">
+            <div class="col-4">
+                <i class="fas fa-circle" style="font-size: 15px;"></i>
+                <i class="fas fa-circle" style="font-size: 15px;"></i>
+                <i class="fas fa-circle" style="font-size: 15px;"></i>
+                <i class="fas fa-circle" style="font-size: 15px;"></i>
+                <i class="fas fa-dot-circle" style="font-size: 15px;"></i>
+                <span class="badge badge-warning">53</span>
+            </div>
+            <div class="col-4" id="write-comment">
+                <a href="#">Yorum yap</a>
+            </div>
+        </div>
+        @{
+            double price = Model.CampaignStatus == true && Model.DiscountedPrice != 0 ? Model.DiscountedPrice : Model.Price;
+            <h1 class="mt-2 text-danger">
+                @price.ToString("C")
+            </h1>
+        }
+        @if (Model.Stock > 0)
+        {
+            using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                @Html.HiddenFor(Model => Model.Id)
+
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-cart-arrow-down" style="font-size: 28px;"></i>
+                    Sepete Ekle
+                </button>
+            }
+        }
+
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-descr-tab" data-toggle="tab" href="#nav-descr" role="tab" aria-controls="nav-descr" aria-selected="true">Açıklama</a>
+                <a class="nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Ödeme</a>
+                <a class="nav-link" id="nav-comment-tab" data-toggle="tab" href="#nav-comment" role="tab" aria-controls="nav-comment" aria-selected="false">Yorumlar</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-descr" role="tabpanel" aria-labelledby="nav-descr-tab">
+                Kişisel verileriniz, Firmamız nezdinde yer alan veri tabanında ve sistemlerde KVKK’nun 12. maddesi gereğince gizli olarak saklanacak; yasal zorunluluklar ve bu belgede belirtilen düzenlemeler haricinde hiçbir şekilde üçüncü kişilerle paylaşılmayacaktır. Firmamız, kişisel verilerinizin barındığı sistemleri ve veri tabanlarını, KVKK’nun 12. Maddesi gereği kişisel verilerin hukuka aykırı olarak işlenmesini önlemekle, yetkisiz kişilerin erişimlerini engellemekle, erişim yönetimi gibi yazılımsal tedbirleri ve fiziksel güvenlik önlemleri almakla mükelleftir. Kişisel verilerin yasal olmayan yollarla başkaları tarafından elde edilmesinin öğrenilmesi halinde durum derhal, yasal düzenlemeye uygun ve yazılı olarak Kişisel Verileri Koruma Kurulu’na bildirilecektir.
+            </div>
+            <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+                Nakit Kapıda Ödeme. Kapıda Kredi Kartı İle Güvenli Ödeme Yapılmaktadır.
+                E-POSTA GÜVENLİĞİ,
+                Mağazamızın Müşteri Hizmetleri’ne, herhangi bir siparişinizle ilgili olarak göndereceğiniz e-postalarda, yer alan bilgiler üçüncü şahıslar tarafından görülemez. Firmamız e-postalarınızdan aktarılan bilgilerin güvenliği garanti edilmektedir.
+
+
+            </div>
+            <div class="tab-pane fade" id="nav-comment" role="tabpanel" aria-labelledby="nav-comment-tab">
+                <h3>Siz İsteyin Biz getirelim . Yenilikci Tedarikcim Kıbrıs da hizmetinizde</h3>
+                <a href="tel://05391044919"><h5><strong><img src="~/Upload/tedarikcim-whatsapp.jpg" />  </strong> </h5></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+    $(function () {
+
+        var current_h = $('.detailImage').height();
+        var current_w = $('.detailImage').width();
+
+        $('.detailImage').hover(
+            function () {
+
+                $(this).stop(true, false).animate({
+                    width: (current_w * 1.5),
+                    height: (current_h * 1.5)
+                });
+
+            }, function () {
+                $(this).stop(true, false).animate({
+                    width: current_w + 'px',
+                    height: current_h + 'px'
+                });
+            });
+
+    });
+
+</script>

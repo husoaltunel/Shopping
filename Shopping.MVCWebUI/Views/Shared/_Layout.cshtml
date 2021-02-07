@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<!-- This site developed by Hüseyin Altunel on 2020. (instagram.com/husoaltunel)-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/theme/css/style.css">
+    <link rel="stylesheet" href="/theme/css/mobil.css">
+
+    <title>Tedarikcim Kıbrıs</title>
+    <link rel="shortcut icon" href="/Upload/favicon.ico" />
+
+</head>
+
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+            @if (User.IsInRole("Admin"))
+            {
+                <i class="fas fa-arrow-alt-circle-right mr-1 text-info" style="font-size: 28px;"></i>
+                <a class="navbar-brand text-info" href="/Product/Index">Yönetim paneline geç</a>
+            }
+            else
+            {
+                <a class="navbar-brand" href="/Home/Index"><img src="~/Upload/logo.png" /></a>
+            }
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Index">Anasayfa</a>
+                    </li>
+                </ul>
+                @if (IsSectionDefined("searchBar"))
+                {
+                    @RenderSection("searchBar", false);
+                }
+
+                @Html.Action("CartSummary", "Cart")
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+
+
+
+    @if (IsSectionDefined("jumbotron"))
+    {
+        @RenderSection("jumbotron", false)
+    }
+    <div class="container" style="margin-top:3rem;">
+        @RenderBody()
+
+        @if (IsSectionDefined("pagination"))
+        {
+            @RenderSection("pagination", false);
+        }
+
+
+    </div>
+
+    <footer class="footer-bs bg-light">
+        <div class="row">
+            <div class="col-md-4 footer-brand animated fadeInLeft">
+                <div class="row">
+                    <div class="col-3"><img src="~/Upload/favicon.ico" /></div>
+
+                    <div class="col-9"><br /><h5>Tedarikcim Kıbrıs</h5></div>
+                </div>
+                <p>Merhaba ! Bu site 2020 den beri müşterilerine hizmet vermektedir.</p>
+            </div>
+            <div class="col-md-4 footer-nav animated fadeInUp">
+                <div class="col-md-6">
+                    <ul class="list">
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 footer-social animated fadeInDown">
+                <h4>BİZİ TAKİP ET</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/canyilmaz4286/">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/tedarikcim_kibris?r=nametag">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    @{
+        var controller = ViewContext.RouteData.Values["controller"];
+        var action = ViewContext.RouteData.Values["action"];
+        var route = $"/{controller}/{action}";
+    }
+
+    <script>
+
+        $(function () {
+            $(".nav-item .nav-link").each(function (index) {
+                if ($(this).attr("href") == "@route") {
+                    $(this).addClass("active");
+                }
+            });
+
+        });
+
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/fontawesome.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+
+</html>

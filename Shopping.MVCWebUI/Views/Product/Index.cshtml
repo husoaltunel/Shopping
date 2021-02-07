@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Shopping.MVCWebUI.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Ürünler</h2>
+<hr />
+
+<p>
+    @Html.ActionLink("Yeni ürün ekle", "Create", null, new { @class = "btn btn-primary btn-sm" })
+</p>
+<hr />
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Images)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategory.Name)
+            </th>
+            <th style="width:40%;">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="width:7%;">
+                @Html.DisplayNameFor(model => model.IsHome)
+            </th>
+            <th style="width:7%;">
+                @Html.DisplayNameFor(model => model.CampaignStatus)
+            </th>
+            <th style="width:13%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                <img style="width:70px;" src="/Upload/@item.DefaultImage" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubCategory.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.IsHome)
+                {
+                    <span class="badge badge-success"><i class="fas fa-check" style="font-size: 18px;"></i></span>
+                }
+                else
+                {
+                    <span class="badge badge-danger"><i class="fas fa-times-circle" style="font-size: 18px;"></i></span>
+                }
+            </td>
+            <td>
+                @if (item.CampaignStatus)
+                {
+                    <span class="badge badge-success"><i class="fas fa-check" style="font-size: 18px;"></i></span>
+                }
+                else
+                {
+                    <span class="badge badge-danger"><i class="fas fa-times-circle" style="font-size: 18px;"></i></span>
+
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+

@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/theme/css/style.css">
+
+
+    <title>Tadını çıkar! :)</title>
+    <link rel="shortcut icon" href="/Upload/favicon.ico" />
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <i class="far fa-arrow-alt-circle-left mr-1 text-danger" style="font-size: 28px;"></i>
+            <a class="navbar-brand text-danger" href="/Home">Yönetim panelinden çık</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/Index">Ürünler <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Category/Index">Kategoriler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/SubCategory/Index">Alt Kategoriler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/Index">Siparişler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Campaign/Index">Kampanyalar</a>
+                    </li>
+                </ul>                
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="margin-top:4rem;">
+        @RenderBody()
+    </div>
+
+    @{
+        var controller = ViewContext.RouteData.Values["controller"];
+        var action = ViewContext.RouteData.Values["action"];
+        var route = $"/{controller}/{action}";
+    }
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script>
+        $(function () {
+            $(".nav-item .nav-link").each(function (index) {
+                if ($(this).attr("href") == "@route") {
+                    $(this).addClass("active");
+                }
+            });
+
+        });
+    </script>
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+
+</html>

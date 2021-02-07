@@ -1,0 +1,15 @@
+﻿@media only screen and (max-width: 992px) {
+    #searchBar{
+        margin-left:1rem!important;
+    }
+}
+@media only screen and (max-width: 992px) {
+    .slider {
+        margin-left: 3rem !important;
+    }
+    @media only screen and (max-width: 992px) {
+        .carousel-item {
+            max-height: 20rem;
+        }
+  
+    }

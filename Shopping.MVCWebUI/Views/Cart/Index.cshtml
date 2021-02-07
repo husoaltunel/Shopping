@@ -1,0 +1,106 @@
+﻿@model Shopping.MVCWebUI.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <h2>Sepetim</h2>
+        <hr />
+        @if (Model.CartLines.Count() == 0)
+        {
+            <div class="alert alert-warning text-center">
+                Sepetinizde hiç bir ürün yok <i class="fas fa-exclamation" style="font-size: 18px;"></i>
+            </div>
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Miktar</th>
+                        <th>Ürün İsmi</th>
+                        <th>Fiyat</th>
+                        <th>Toplam</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cLine in Model.CartLines)
+                    {
+                        double price = cLine.Product.CampaignStatus == true && cLine.Product.DiscountedPrice != 0 ? cLine.Product.DiscountedPrice : cLine.Product.Price;
+                        <tr>
+                            <td><img src="~/Upload/@cLine.Product.DefaultImage" width="50" /> </td>
+                            <td>@cLine.Quantity</td>
+                            <td>@cLine.Product.Name</td>
+                            <td>@price</td>
+                            <td>@((price * cLine.Quantity).ToString("c"))</td>
+                            <td>
+                                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                {
+                                    @Html.Hidden("Id", cLine.Product.Id);
+                                    <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt" style="font-size: 18px;"></i> Çıkar</button>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td>@Model.TotalPrice().ToString("c")</td>
+                    </tr>
+
+                </tfoot>
+            </table>
+
+
+            <div class="text-center">
+                <a href="/Home/Index" class="btn btn-primary btn-sm mr-3"><i class="fas fa-chevron-circle-left" style="font-size: 18px;"></i> Alışverişe devam et</a>
+                <a id="complete" href="/Cart/CheckOut" class="btn btn-warning btn-sm">Alışverişi Tamamla <i class="fas fa-chevron-circle-right text-white" style="font-size: 18px;"></i></a>
+            </div>
+
+
+
+        }
+
+    </div>
+</div>
+
+<script>
+
+    @*var tbody = $(".table tbody");
+    var tableHtml = tbody[0].innerHTML.toString();
+    var tableHtmlSplit = tableHtml.replace(/\s+/g, '');
+    
+    var tableHtmlArray = [];
+    
+    for (var i = 0; i < tableHtml.length; i++) {
+        tableHtmlArray[i] = tableHtml[i];
+    };
+    console.log(tableHtmlArray);
+
+    $(function () {
+
+        $("#complete").click(function () {
+            $.ajax({
+                url: '@Html.ActionLink("CheckOut","Cart")',
+                type: 'POST',
+                data: { tableHtmlArray: tableHtmlArray },
+                success: function (gelenveri) {
+                    alert("success");
+                },
+                error: function (hata) {
+                    alert(hata.responseText);
+                }
+            });
+        });
+
+    });*@
+
+</script>
+
+

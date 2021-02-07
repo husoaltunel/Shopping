@@ -1,0 +1,256 @@
+﻿@using Shopping.MVCWebUI.Models
+@model IEnumerable<ProductModel>
+
+@section searchBar{
+
+    @Html.Partial("searchBarPartial")
+
+}
+
+@section jumbotron{
+    <div class="row jumbotron">
+        <div class="col-md-6">
+            <div class="container">
+                <h1 class="display-4">Efsane Cuma indirimleri </h1>
+                <p class="lead">
+                    <h3>Siz İsteyin Biz getirelim . Yenilikci Tedarikcim Kıbrıs da hizmetinizde</h3>
+                    <a href="tel://05391044919"><h5><strong><img src="~/Upload/tedarikcim-whatsapp.jpg" />  </strong> </h5></a>
+                </p>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            @if (ViewBag.productsAtCampaign.Count != 0)
+            {
+                <div class="slider">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            @{
+                                var active = "active";
+                                int i = 0;
+                                foreach (var product in ViewBag.productsAtCampaign)
+                                {
+                                    if (i != 0)
+                                    {
+                                        active = "";
+                                    }
+
+                                    <div class="carousel-item @active">
+
+                                        <a href="/Home/Details/@product.Id"><img class="d-block img-fluid" src="~/Upload/@product.Image"></a>
+                                    </div>
+                                    i++;
+                                }
+                            }
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <i class="fas fa-chevron-left text-black-50" style="font-size: 28px;" aria-hidden="true"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <i class="fas fa-chevron-right text-black-50" style="font-size: 28px;" aria-hidden="true"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                </div>
+                <h2 style="margin-left:7.5rem;margin-top:0.5rem;border-radius:2rem;" class="text-center text-warning bg-dark">Kampanyadaki Yenilikçi Ürünlerimiz</h2>
+            }
+        </div>      
+    </div>
+
+}
+<!-- body -->
+<div class="row">
+    <div class="categories col-md-3 p-0 flex-column">
+        @Html.Action("Categories", "Home")
+
+        <div class="shippingTel mt-3">
+            <div>
+
+                <a href=" https://wa.me/message/BVZ5LCVEXQGKH1">
+                    <h5>
+                        <strong>
+                            <img src="~/Upload/whatsapp.jpg" />
+                        </strong>
+                    </h5>
+                </a>
+            </div>
+            <div>
+                <a href="tel://05391044919">
+                    <h5>
+                        <strong>
+                            <img src="~/Upload/tedarikcim-whatsapp.jpg" style="width:230px;" />
+                        </strong>
+                    </h5>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2 showSubCategories bg-light">
+
+    </div>
+    <div class="col-md-9 products">
+
+        @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger" role="alert">
+                <i class="far fa-surprise" style="font-size: 38px;"></i> Bu kategoriye ait hiçbir ürün bulunamadı
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info" role="alert">
+
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <i class="fas fa-clipboard-check" style="font-size: 3rem;"></i>
+                        <u><i><strong><span class="badge badge-success" style="font-size:1rem;">@ViewBag.productCount</span> adet ürün mevcut</strong></i></u>
+                    </div>
+                    <div>
+                        <i class="fas fa-scroll" style="font-size: 2rem;margin-top:1rem;"></i>
+                        <strong><span class="badge badge-warning" style="font-size:1rem;">@ViewBag.pageCount</span> sayfa arasından <span class="badge badge-warning" style="font-size:1rem;">@ViewBag.page.</span> sayfa</strong>
+                    </div>
+                </div>
+
+            </div>
+            @Html.Partial("_ProductList", Model)
+        }
+        <div class="videos">
+            <video controls="controls">
+                <source src="~/Upload/movie.mp4" type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg">
+                Tarayıcınız bu özelliği desteklemiyor.
+            </video>
+
+            <video controls="controls">
+                <source src="~/Upload/movie3.mp4" type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg">
+                Tarayıcınız bu özelliği desteklemiyor.
+            </video>
+            <video controls="controls">
+                <source src="~/Upload/movie4.mp4" type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg">
+                Tarayıcınız bu özelliği desteklemiyor.
+            </video>
+            <video controls="controls">
+                <source src="~/Upload/movie5.mp4" type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg">
+                Tarayıcınız bu özelliği desteklemiyor.
+            </video>
+            <video controls="controls">
+                <source src="~/Upload/movie6.mp4" type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg">
+                Tarayıcınız bu özelliği desteklemiyor.
+            </video>
+        </div>
+
+    </div>
+    @if (Model.Count() != 0)
+    {
+        @section pagination {
+            <div class="pages">
+                <nav>
+                    <ul class="pagination">
+                        @{
+                            var subId = ViewBag.subId;
+                            var firstPage = ViewBag.page > 4 ? ViewBag.page - 3 : 1;
+                            double lastPage = ViewBag.page + 3 <= ViewBag.pageCount ? ViewBag.page + 3 : ViewBag.pageCount;
+                            int maxPaginationLinkCount = 7;
+
+                            if (ViewBag.page < 5 && ViewBag.pageCount > maxPaginationLinkCount)
+                            {
+                                lastPage = maxPaginationLinkCount;
+                            }
+                        }
+
+                        @for (int i = firstPage; i <= lastPage; i++)
+                        {
+                            if (subId == null)
+                            {
+                                @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "page-link" });
+                            }
+                            else
+                            {
+                                @Html.ActionLink(i.ToString(), "Index", new { subId = subId, page = i }, new { @class = "page-link" });
+                            }
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+        }
+    }
+
+</div>
+
+<script>
+
+    $(function () {
+
+        $('.carousel').carousel({
+            interval: 1500
+        })
+
+        $(".showSubCategories").height = $(".categories").height;
+        $(".category").each(function () {
+            $(this).on("mouseover", function () {
+                var categoryId = $(this).attr("id");
+                var subCategoriesHtml = $(`#${categoryId}.subCategories`).html();
+                $(".showSubCategories").html(subCategoriesHtml);
+                $(".showSubCategories").show();
+                $(".products").hide();
+            }).on("mouseleave", function () {
+                $(".showSubCategories").hide();
+                $(".products").show();
+            })
+        });
+
+        $(".showSubCategories").on("mouseover", function () {
+            $(this).show();
+            $(".products").hide();
+        }).on("mouseleave", function () {
+            $(this).hide();
+            $(".products").show();
+        });
+
+
+
+        //Whatsapp Ayarı
+        (function () {
+
+            var options = {
+
+                WhatsApp: "+ 905365812145", //
+
+                call_to_action: "Merhaba, nasıl yardımcı olabilirim?", // Görünecek metin
+
+                position: "right", // Position may be ‘right’ or ‘left’
+
+            };
+
+            var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+
+            var s = document.createElement('script'); s.type = 'text / javascript'; s.async = true; s.src = url + '/widget-send-button/js / init.js';
+
+            s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+
+            var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+
+        })();
+
+    });
+
+</script>
+
+
+
+

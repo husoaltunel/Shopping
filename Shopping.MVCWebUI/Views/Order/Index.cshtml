@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Shopping.MVCWebUI.Models.OrderAdminModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <h2>Siparişler</h2>
+    <hr />
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderId)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderNumber)</th>
+                <th>@Html.DisplayNameFor(model => model.OrderDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Count)</th>
+                <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+            <tr>
+                <td>@order.UserName</td>
+                <td>@order.OrderId</td>
+                <td>@order.OrderNumber</td>
+                <td>@order.OrderDate</td>
+                <td>@order.Count</td>
+                <td>@order.TotalPrice.ToString("C")</td>
+                @if (order.OrderState == Shopping.MVCWebUI.Entity.EnumOrderState.Waiting)
+                {
+                    <td width="80"><div class="badge badge-danger">Onay bekleniyor..</div></td>
+                }
+                else
+                {
+                    <td><div class="badge badge-success">Onaylandı !</div></td>
+                }
+                <td width="90">
+                    @Html.ActionLink("Details", "Details","Order", new { id = order.OrderId }, new { @class = "btn btn-primary btn-sm" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+

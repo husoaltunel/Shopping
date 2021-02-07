@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Shopping.MVCWebUI.Models.OrderUserModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Sipariş Bilgileriniz</h2>
+    <hr />
+    <div style="width:800px;margin:auto;" class="row">
+        <div class="col-md-12">
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Sipariş Numarası</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Toplam</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>@order.OrderNumber</td>
+                            <td>@order.OrderDate.ToShortDateString()</td>
+                            <td>@order.TotalPrice.ToString("C")</td>
+                            @if (order.OrderState == Shopping.MVCWebUI.Entity.EnumOrderState.Waiting)
+                            {
+                                <td width="80"><div class="badge badge-danger">Onay bekleniyor..</div></td>
+                            }
+                            else
+                            {
+                                <td><div class="badge badge-success">Onaylandı !</div></td>
+                            }
+                            <td width="90">
+                                @Html.ActionLink("Detay", "Details", new { id = order.OrderId }, new { @class = "btn btn-primary btn-sm" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+

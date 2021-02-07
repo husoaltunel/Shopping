@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Shopping.MVCWebUI.Models.CategoryModel>
+@{
+    var selectedCategory = Url.RequestContext.RouteData.Values["id"];
+}
+
+<ul class="list-group" style="width:85%;">
+    <li class="row list-group-item d-flex justify-content-between align-items-center" style="padding:5px 0px;">
+        <div class="col-md-8">
+            <a href="/Home/Index">Tüm Kategoriler</a>
+        </div>
+        <div class="col-md-2">
+            <span class="badge badge-dark badge-pill">
+                @{
+                    int countAll = 0;
+                    foreach (var category in Model)
+                    {
+                        foreach (var subCategory in category.SubCategories)
+                        {
+                            countAll += subCategory.Products.Where(prd => prd.IsHome).Count();
+                        }
+                    }
+                }
+                @if (countAll != 0)
+                {
+                    @countAll
+                }
+            </span>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+    </li>
+    <li>
+
+        @foreach (var category in Model)
+        {
+            <ul id="@category.Id" class="category list-group">
+                @{
+                    int count = 0;
+                    foreach (var subCategory in category.SubCategories)
+                    {
+                        count += subCategory.Products.Where(prd => prd.IsHome).Count();
+                    }
+                    if (selectedCategory != null)
+                    {
+                        if (category.Id == int.Parse(selectedCategory.ToString()))
+                        {
+                            <li class="row list-group-item d-flex justify-content-between align-items-center bg-dark">
+                                <div class="col-md-8">
+                                    <a href="/Home/Index/@category.Id" class="text-light">@category.Name</a>
+                                </div>
+                                <div class="col-md-2">
+                                    @if (count != 0)
+                                    {
+                                        <span class="badge badge-light badge-pill">
+                                            @count
+                                        </span>
+                                    }
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fas fa-chevron-right text-dark" style="font-size: 10px;"></i>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="row list-group-item d-flex justify-content-between align-items-center">
+                                <div class="col-md-8">
+                                    <a href="/Home/Index/@category.Id">@category.Name</a>
+                                </div>
+                                <div class="col-md-2">
+                                    @if (count != 0)
+                                    {
+                                        <span class="badge badge-secondary badge-pill">
+                                            @count
+                                        </span>
+                                    }
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fas fa-chevron-right text-secondary" style="font-size: 10px;"></i>
+                                </div>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="row list-group-item d-flex justify-content-between align-items-center">
+                            <div class="col-md-8">
+                                <a href="/Home/Index/@category.Id">@category.Name</a>
+                            </div>
+                            <div class="col-md-2">
+                                @if (count != 0)
+                                {
+                                    <span class="badge badge-secondary badge-pill">
+                                        @count
+                                    </span>
+                                }
+                            </div>
+                            <div class="col-md-2">
+                                <i class="fas fa-chevron-right text-dark" style="font-size: 10px;"></i>
+                            </div>
+                        </li>
+                    }
+
+                    <li id="@category.Id" class="subCategories list-group-item" style="font-size:small;display:none;">
+                        @foreach (var subCategory in category.SubCategories)
+                        {
+                            <div><i>@Html.ActionLink(subCategory.Name, "Index", new { subId = subCategory.Id })</i></div>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </li>
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
