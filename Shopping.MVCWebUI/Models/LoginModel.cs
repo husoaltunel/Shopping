@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Shopping.MVCWebUI.Models
 {
-    public class Login
+    public class LoginModel
     {
         [DisplayName("Kullanıcı Adı")]
         [Required]

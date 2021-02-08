@@ -15,6 +15,8 @@ namespace Shopping.MVCWebUI.Entity
         public string Name { get; set; }
         [DisplayName("Açıklama")]
         public string Description { get; set; }
+        public EnumIsActiveState IsActive { get; set; }
+
         public virtual List<SubCategory> SubCategories { get; set; }
     }
 }

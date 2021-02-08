@@ -29,7 +29,7 @@ namespace Shopping.MVCWebUI.Entity
         public string DefaultImage { get; set; }
         [DisplayName("Anasayfa durumu")]
         public bool IsHome { get; set; }
-
+        public EnumIsActiveState IsActive { get; set; }
         public int SubCategoryId { get; set; }
         public virtual SubCategory SubCategory { get; set; }
         [DisplayName("Kampanya Id")]

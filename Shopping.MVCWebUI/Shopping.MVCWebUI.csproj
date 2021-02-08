@@ -350,6 +350,7 @@
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\DataContext.cs" />
     <Compile Include="Entity\DataInitializer.cs" />
+    <Compile Include="Entity\EnumIsActiveState.cs" />
     <Compile Include="Entity\EnumOrderState.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Product.cs" />
@@ -367,12 +368,12 @@
     <Compile Include="Models\CreateProductModel.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\SubCategoryModel.cs" />
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\OrderAdminModel.cs" />
     <Compile Include="Models\OrderDetailsModel.cs" />
     <Compile Include="Models\OrderUserModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

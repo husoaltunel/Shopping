@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Shopping.MVCWebUI.Models
 {
-    public class Register
+    public class RegisterModel
     {
         [DisplayName("Ad")]
         [Required]

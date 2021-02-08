@@ -30,6 +30,8 @@ else if (ViewBag.message == "error")
 
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
+
             @Html.ValidationSummary()
             <div class="form-group row">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Kullanıcı Adı</label>

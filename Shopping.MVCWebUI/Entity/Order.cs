@@ -33,6 +33,7 @@ namespace Shopping.MVCWebUI.Entity
         public string Neighborhood { get; set; }
         [DisplayName("Posta Kodu")]
         public string ZipCode { get; set; }
+        public EnumIsActiveState IsActive { get; set; }
 
         public virtual List<OrderLine> OrderLines{ get; set; }
     }

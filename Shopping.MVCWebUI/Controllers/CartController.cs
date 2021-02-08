@@ -55,6 +55,7 @@ namespace Shopping.MVCWebUI.Controllers
             return View(new ShippingDetails());
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CheckOut(ShippingDetails details)
         {
             if (ModelState.IsValid)

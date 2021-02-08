@@ -15,6 +15,7 @@ namespace Shopping.MVCWebUI.Entity
         public DateTime DueDate { get; set; }
         [DisplayName("İndirim Yüzdesi % ")]
         public int DiscountPercent { get; set; }
+        public EnumIsActiveState IsActive { get;set;}
 
         public virtual List<Product> Products { get; set; }
 

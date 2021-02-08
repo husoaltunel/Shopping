@@ -74,10 +74,28 @@ namespace Shopping.MVCWebUI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Register newUser)
+        public ActionResult Register(RegisterModel newUser)
         {
             if (ModelState.IsValid)
             {
+                var usr = dbIdentity.Users.Where(u => u.UserName == newUser.UserName || u.Email == newUser.Email).Select(u => new RegisterModel()
+                {
+                    UserName = u.UserName,
+                    Email = u.Email
+                }).FirstOrDefault();
+                if (usr != null)
+                {
+                    if (usr.UserName == newUser.UserName)
+                    {
+                        ModelState.AddModelError("UserRegisterError", "Bu kullanıcı adı mevcut");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserRegisterError", "Bu email birileri tarafından kullanılıyor");
+                    }
+
+                    return View(newUser);
+                }
                 var user = new ApplicationUser()
                 {
                     Name = newUser.Name,
@@ -112,7 +130,7 @@ namespace Shopping.MVCWebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Login user, string returnUrl)
+        public ActionResult Login(LoginModel user, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +144,7 @@ namespace Shopping.MVCWebUI.Controllers
                         IsPersistent = user.RememberMe
                     };
                     authManager.SignIn(authProperties, identity);
-                    
+
                     if (!String.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
