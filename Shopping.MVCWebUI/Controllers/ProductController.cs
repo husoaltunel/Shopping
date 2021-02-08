@@ -20,7 +20,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.SubCategory);
+            var products = db.Products.Where(p => p.IsActive == EnumIsActiveState.Active).Include(p => p.SubCategory);
             return View(products.ToList());
         }
 
@@ -51,7 +51,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,CampaignStatus,CampaignId,Stock,Images,IsHome,SubCategoryId")] CreateProductModel product)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,CampaignStatus,CampaignId,Stock,Images,IsHome,IsActive,SubCategoryId")] CreateProductModel product)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +64,7 @@ namespace Shopping.MVCWebUI.Controllers
                     CampaignId = product.CampaignId,
                     Stock = product.Stock,
                     IsHome = product.IsHome,
+                    IsActive = product.IsActive,
                     SubCategoryId = product.SubCategoryId
                 };
 
@@ -135,7 +136,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,CampaignStatus,CampaignId,Stock,Images,IsHome,SubCategoryId")] CreateProductModel product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price,CampaignStatus,CampaignId,Stock,Images,IsHome,IsActive,SubCategoryId")] CreateProductModel product)
         {
             if (ModelState.IsValid)
             {
@@ -162,6 +163,7 @@ namespace Shopping.MVCWebUI.Controllers
                     Stock = product.Stock,
                     QuantitySold = product.QuantitySold,
                     IsHome = product.IsHome,
+                    IsActive = product.IsActive,
                     Images = oldProductImages,
                     DefaultImage = arrayImages[0],
                     SubCategoryId = product.SubCategoryId
@@ -223,7 +225,8 @@ namespace Shopping.MVCWebUI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
+            product.IsActive = EnumIsActiveState.Deleted;
+            db.Entry(product).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

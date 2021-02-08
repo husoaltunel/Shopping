@@ -18,7 +18,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            return View(db.Categories.AsNoTracking().ToList());
+            return View(db.Categories.AsNoTracking().Where(c => c.IsActive == EnumIsActiveState.Active).ToList());
         }
 
         // GET: Category/Details/5
@@ -47,7 +47,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Category category)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,IsActive")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Category category)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,IsActive")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +111,8 @@ namespace Shopping.MVCWebUI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            category.IsActive = EnumIsActiveState.Deleted;
+            db.Entry(category).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,5 @@
 ﻿
+using Shopping.MVCWebUI.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Shopping.MVCWebUI.Models
         public DateTime? DueDate { get; set; }
         [DisplayName("İndirim Yüzdesi %")]
         public int? DiscountPercent { get; set; }
+        public EnumIsActiveState IsActive { get; set; }
 
     }
 }

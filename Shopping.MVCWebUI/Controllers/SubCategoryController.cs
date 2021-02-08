@@ -18,7 +18,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: SubCategory
         public ActionResult Index()
         {
-            var subCategories = db.SubCategories.AsNoTracking().Include(s => s.Category);
+            var subCategories = db.SubCategories.AsNoTracking().Where(s => s.IsActive == EnumIsActiveState.Active).Include(s => s.Category);
             return View(subCategories.ToList());
         }
 
@@ -49,7 +49,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,CategoryId")] SubCategory subCategory)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,IsActive,CategoryId")] SubCategory subCategory)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,CategoryId")] SubCategory subCategory)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,IsActive,CategoryId")] SubCategory subCategory)
         {
             if (ModelState.IsValid)
             {
@@ -116,7 +116,8 @@ namespace Shopping.MVCWebUI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             SubCategory subCategory = db.SubCategories.Find(id);
-            db.SubCategories.Remove(subCategory);
+            subCategory.IsActive = EnumIsActiveState.Deleted;
+            db.Entry(subCategory).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

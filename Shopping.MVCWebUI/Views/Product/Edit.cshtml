@@ -92,6 +92,7 @@
             @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
         </div>
     </div>
+    @Html.Hidden("IsActive", 1)
     <hr />
 
     <div class="form-group">

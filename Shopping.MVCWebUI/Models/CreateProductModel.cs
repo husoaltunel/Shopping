@@ -28,6 +28,8 @@ namespace Shopping.MVCWebUI.Models
         public HttpPostedFileBase[] Images { get; set; }
         [DisplayName("Anasayfa durumu")]
         public bool IsHome { get; set; }
+        public EnumIsActiveState IsActive { get; set; }
+
         public int SubCategoryId { get; set; }
         [DisplayName("Kampanya Id")]
         public System.Nullable<int> CampaignId { get; set; }

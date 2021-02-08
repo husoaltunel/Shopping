@@ -17,7 +17,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Campaign
         public ActionResult Index()
         {
-            return View(db.Campaigns.ToList());
+            return View(db.Campaigns.AsNoTracking().Where(c => c.IsActive == EnumIsActiveState.Active).ToList());
         }
 
         // GET: Campaign/Details/5
@@ -46,7 +46,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,DueDate,DiscountPercent")] Campaign campaign)
+        public ActionResult Create([Bind(Include = "Id,Name,DueDate,DiscountPercent,IsActive")] Campaign campaign)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace Shopping.MVCWebUI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,DueDate,DiscountPercent")] Campaign campaign)
+        public ActionResult Edit([Bind(Include = "Id,Name,DueDate,DiscountPercent,IsActive")] Campaign campaign)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +112,8 @@ namespace Shopping.MVCWebUI.Controllers
             try
             {
                 Campaign campaign = db.Campaigns.Find(id);
-                db.Campaigns.Remove(campaign);
+                campaign.IsActive = EnumIsActiveState.Deleted;
+                db.Entry(campaign).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

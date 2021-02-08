@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Shopping.MVCWebUI.Entity
 {
-    public class DataInitializer : DropCreateDatabaseIfModelChanges<DataContext>
+    public class DataInitializer : CreateDatabaseIfNotExists<DataContext>
     {
         protected override void Seed(DataContext context)
         {
@@ -35,57 +35,8 @@ namespace Shopping.MVCWebUI.Entity
 
             var products = new List<Product>()
             {
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,DefaultImage = "1.jpg", IsHome = true,SubCategoryId = 1},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,DefaultImage = "1.jpg", IsHome = true,SubCategoryId = 1},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,DefaultImage = "1.jpg", IsHome = true,SubCategoryId = 1},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,DefaultImage = "1.jpg", IsHome = true,SubCategoryId = 1},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,DefaultImage = "1.jpg", IsHome = true,SubCategoryId = 1},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 20,QuantitySold = 20,DefaultImage = "2.jpg", IsHome = true,SubCategoryId = 2},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 20,QuantitySold = 20,DefaultImage = "2.jpg", IsHome = true,SubCategoryId = 2},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 20,QuantitySold = 20,DefaultImage = "2.jpg", IsHome = true,SubCategoryId = 2},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 20,QuantitySold = 20,DefaultImage = "2.jpg", IsHome = true,SubCategoryId = 2},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 20,QuantitySold = 20,DefaultImage = "2.jpg", IsHome = true,SubCategoryId = 2},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 30,QuantitySold = 30,DefaultImage = "3.jpg", IsHome = true,SubCategoryId = 3},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 30,QuantitySold = 30,DefaultImage = "3.jpg", IsHome = true,SubCategoryId = 3},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 30,QuantitySold = 30,DefaultImage = "3.jpg", IsHome = true,SubCategoryId = 3},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 30,QuantitySold = 30,DefaultImage = "3.jpg", IsHome = true,SubCategoryId = 3},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 30,QuantitySold = 30,DefaultImage = "3.jpg", IsHome = true,SubCategoryId = 3},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 40,QuantitySold = 40,DefaultImage = "4.jpg", IsHome = true,SubCategoryId = 4},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 40,QuantitySold = 40,DefaultImage = "4.jpg", IsHome = true,SubCategoryId = 4},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 40,QuantitySold = 40,DefaultImage = "4.jpg", IsHome = true,SubCategoryId = 4},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 40,QuantitySold = 40,DefaultImage = "4.jpg", IsHome = true,SubCategoryId = 4},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 40,QuantitySold = 40,DefaultImage = "4.jpg", IsHome = true,SubCategoryId = 4},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 50,QuantitySold = 50,DefaultImage = "5.jpg", IsHome = true,SubCategoryId = 5},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 50,QuantitySold = 50,DefaultImage = "5.jpg", IsHome = true,SubCategoryId = 5},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 50,QuantitySold = 50,DefaultImage = "5.jpg", IsHome = true,SubCategoryId = 5},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 50,QuantitySold = 50,DefaultImage = "5.jpg", IsHome = true,SubCategoryId = 5},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 50,QuantitySold = 50,DefaultImage = "5.jpg", IsHome = true,SubCategoryId = 5},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 60,QuantitySold = 60,DefaultImage = "6.jpg", IsHome = true,SubCategoryId = 6},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 60,QuantitySold = 60,DefaultImage = "6.jpg", IsHome = true,SubCategoryId = 6},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 60,QuantitySold = 60,DefaultImage = "6.jpg", IsHome = true,SubCategoryId = 6},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 60,QuantitySold = 60,DefaultImage = "6.jpg", IsHome = true,SubCategoryId = 6},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 60,QuantitySold = 60,DefaultImage = "6.jpg", IsHome = true,SubCategoryId = 6},
-                
-
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 70,QuantitySold = 70,DefaultImage = "7.jpg", IsHome = true,SubCategoryId = 7},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 70,QuantitySold = 70,DefaultImage = "7.jpg", IsHome = true,SubCategoryId = 7},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 70,QuantitySold = 70,DefaultImage = "7.jpg", IsHome = true,SubCategoryId = 7},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 70,QuantitySold = 70,DefaultImage = "7.jpg", IsHome = true,SubCategoryId = 7},
-                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 70,QuantitySold = 70,DefaultImage = "7.jpg", IsHome = true,SubCategoryId = 7},
-                
-
-                
-
+                new Product(){Name = "Kışlık Uzun Kollu Bayan Peluş Polar Pijama Takımı",Description = "Slimfit Gözbandı Hediyeli Kışlık Kadın Welsoft Peluş Pijama Takım",Price = 109.00, Stock = 10,QuantitySold = 10,Images = "1.jpg,", DefaultImage = "1.jpg", IsHome = true,IsActive = EnumIsActiveState.Active, SubCategoryId = 1},
+                                            
             };
 
             context.Products.AddRange(products);

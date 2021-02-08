@@ -37,14 +37,6 @@ namespace Shopping.MVCWebUI.Identity
                 userManager.AddToRole(user.Id,"Admin");
                 userManager.AddToRole(user.Id, "User");
             }
-            if (!context.Users.Any(user => user.UserName == "demett"))
-            {
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
-                var user = new ApplicationUser() { Name = "Demet", Surname = "Altunel", UserName = "demett", Email = "abc1@hotmail.com" };
-                userManager.Create(user, "123456");
-                userManager.AddToRole(user.Id, "User");
-            }
 
 
             base.Seed(context);

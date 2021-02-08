@@ -17,7 +17,6 @@ namespace Shopping.MVCWebUI
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             Database.SetInitializer(new IdentityDataInitializer());
-            Database.SetInitializer(new DataInitializer());
             
         }
     }

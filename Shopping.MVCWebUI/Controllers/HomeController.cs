@@ -23,7 +23,7 @@ namespace Shopping.MVCWebUI.Controllers
 
             int skipCount = (int)productCountPerPage * (int)(page - 1);
 
-            var products = db.Products.AsNoTracking().Where(prd => prd.IsHome)
+            var products = db.Products.AsNoTracking().Where(prd => prd.IsHome && prd.IsActive == EnumIsActiveState.Active)
                 .Select(prd => new ProductModel()
                 {
                     Id = prd.Id,
@@ -93,7 +93,7 @@ namespace Shopping.MVCWebUI.Controllers
 
         public PartialViewResult Categories()
         {
-            var categories = db.Categories.AsNoTracking().Select(c => new CategoryModel()
+            var categories = db.Categories.AsNoTracking().Where(c => c.IsActive == EnumIsActiveState.Active).Select(c => new CategoryModel()
             {
                 Id = c.Id,
                 Name = c.Name,
