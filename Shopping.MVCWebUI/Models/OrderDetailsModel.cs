@@ -9,6 +9,7 @@ namespace Shopping.MVCWebUI.Models
     public class OrderDetailsModel
     {
         public int OrderId { get; set; }
+
         public string OrderNumber { get; set; }
         public double TotalPrice { get; set; }
         public DateTime OrderDate { get; set; }
@@ -27,6 +28,7 @@ namespace Shopping.MVCWebUI.Models
     public class OrderLineModel
     {
         public int ProductId { get; set; }
+
         public string ProductName { get; set; }
         public string Image { get; set; }
         public int Quantity { get; set; }

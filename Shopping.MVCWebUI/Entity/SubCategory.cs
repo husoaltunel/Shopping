@@ -10,13 +10,14 @@ namespace Shopping.MVCWebUI.Entity
     public class SubCategory
     {
         public int Id { get; set; }
+        public int CategoryId { get; set; }
+
         [DisplayName("Alt Kategori Adı")]
         public string Name { get; set; }
         [DisplayName("Açıklama")]
         public string Description { get; set; }
         public EnumIsActiveState IsActive { get; set; }
-
-        public int CategoryId { get; set; }
+      
         public virtual Category Category { get; set; }
         public virtual List<Product> Products { get; set; }
     }

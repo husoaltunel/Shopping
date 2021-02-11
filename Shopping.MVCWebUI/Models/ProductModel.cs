@@ -9,6 +9,8 @@ namespace Shopping.MVCWebUI.Models
     public class ProductModel
     {
         public int Id { get; set; }
+        public int SubCategoryId { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
@@ -17,8 +19,7 @@ namespace Shopping.MVCWebUI.Models
         public int Stock { get; set; }
         public int QuantitySold { get; set; }
         public string Image { get; set; }
-
-        public int SubCategoryId { get; set; }
+        
         public SubCategory SubCategory { get; set; }
         public CampaignModel Campaign { get; set; }
     }

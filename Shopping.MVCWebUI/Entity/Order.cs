@@ -35,17 +35,18 @@ namespace Shopping.MVCWebUI.Entity
         public string ZipCode { get; set; }
         public EnumIsActiveState IsActive { get; set; }
 
-        public virtual List<OrderLine> OrderLines{ get; set; }
+        public virtual List<OrderLine> OrderLines { get; set; }
     }
     public class OrderLine
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
+        public int OrderId { get; set; }
+
         public int Quantity { get; set; }
         public double Price { get; set; }
 
-        public int OrderId { get; set; }
+        public virtual Product Product { get; set; }
         public virtual Order Order { get; set; }
     }
 }

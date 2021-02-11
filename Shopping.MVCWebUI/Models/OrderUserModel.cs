@@ -9,6 +9,7 @@ namespace Shopping.MVCWebUI.Models
     public class OrderUserModel
     {
         public int OrderId { get; set; }
+
         public string OrderNumber { get; set; }
         public double TotalPrice { get; set; }
         public EnumOrderState OrderState { get; set; }

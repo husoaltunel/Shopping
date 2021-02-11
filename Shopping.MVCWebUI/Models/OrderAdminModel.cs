@@ -9,10 +9,11 @@ namespace Shopping.MVCWebUI.Models
 {
     public class OrderAdminModel
     {
-        [DisplayName("Kullanıcı Adı")]
-        public string UserName { get; set; }
         [DisplayName("Sipariş Id")]
         public int OrderId { get; set; }
+
+        [DisplayName("Kullanıcı Adı")]
+        public string UserName { get; set; }
         [DisplayName("Sipariş Numarası")]
         public string OrderNumber { get; set; }
         [DisplayName("Toplam Fiyat")]

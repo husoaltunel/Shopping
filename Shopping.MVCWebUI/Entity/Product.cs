@@ -9,6 +9,10 @@ namespace Shopping.MVCWebUI.Entity
     public class Product
     {
         public int Id { get; set; }
+        public int SubCategoryId { get; set; }
+        [DisplayName("Kampanya Id")]
+        public Nullable<int> CampaignId { get; set; }
+
         [DisplayName("Ürün Adı")]
         public string Name { get; set; }
         [DisplayName("Ürün Açıklaması")]
@@ -30,10 +34,8 @@ namespace Shopping.MVCWebUI.Entity
         [DisplayName("Anasayfa durumu")]
         public bool IsHome { get; set; }
         public EnumIsActiveState IsActive { get; set; }
-        public int SubCategoryId { get; set; }
+        
         public virtual SubCategory SubCategory { get; set; }
-        [DisplayName("Kampanya Id")]
-        public Nullable<int> CampaignId { get; set; }
         public virtual Campaign Campaign { get; set; }
 
     }
