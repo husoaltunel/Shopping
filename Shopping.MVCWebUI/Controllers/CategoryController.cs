@@ -39,7 +39,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Category());
         }
 
         // POST: Category/Create

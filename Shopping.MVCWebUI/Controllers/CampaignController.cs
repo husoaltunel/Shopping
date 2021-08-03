@@ -38,7 +38,7 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: Campaign/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new Campaign());
         }
 
         // POST: Campaign/Create

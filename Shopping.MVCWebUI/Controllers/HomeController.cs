@@ -14,7 +14,7 @@ namespace Shopping.MVCWebUI.Controllers
         double productCountPerPage = 15;
         double productCount = 0;
 
-        public ActionResult Index(int? id, int? subId, int? page)
+        public ActionResult Index(int? id, int? subId, int? page, string searchText)
         {
             if (page == null)
             {
@@ -43,8 +43,11 @@ namespace Shopping.MVCWebUI.Controllers
                         DiscountPercent = (int?)(prd.Campaign.DiscountPercent)
                     }
                 }).AsQueryable();
-
-            ViewBag.productsBestSeller = products.OrderByDescending(prd => prd.QuantitySold).Take((int)productCountPerPage).ToList();
+            if (searchText != null)
+            {
+                products = products.Where(prd => prd.Name.Contains(searchText));
+            }
+            ViewBag.productsBestSeller = products.OrderByDescending(prd => prd.QuantitySold).Where(p => p.QuantitySold != 0).Take((int)productCountPerPage).ToList();
             ViewBag.productsAtCampaign = products.Where(prd => prd.CampaignStatus == true && prd.DiscountedPrice != 0).ToList();
 
             if (id != null)
@@ -81,7 +84,7 @@ namespace Shopping.MVCWebUI.Controllers
             ViewBag.productCount = productCount;
             ViewBag.page = page;
             ViewBag.pageCount = pageCount;
-
+            if (Request.IsAjaxRequest()) return View(products.ToList());
             return View(products.ToList());
         }
         public ActionResult Details(int id)

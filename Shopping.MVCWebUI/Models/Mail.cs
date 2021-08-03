@@ -15,8 +15,8 @@ namespace Shopping.MVCWebUI.Models
             // göndericinin mail adresi
             WebMail.SmtpServer = "smtp.gmail.com";
             WebMail.SmtpPort = 587;
-            WebMail.UserName = "webtedarikcimkibris@gmail.com";
-            WebMail.Password = "tk2021tk";
+            WebMail.UserName = "esporyeni@gmail.com";
+            WebMail.Password = "Esporyeni123";
             WebMail.EnableSsl = true;
 
         }
@@ -47,10 +47,10 @@ namespace Shopping.MVCWebUI.Models
 
                 // siparişlerin geleceği mail adresi
                 WebMail.Send(
-                      to: "siparistedarikcimkibris@gmail.com",
+                      to: "haltunel96@gmail.com",
                       subject: "Müşteri sipariş maili",
                       body: body,
-                      replyTo: "siparistedarikcimkibris@gmail.com",
+                      replyTo: "esporyeni@gmail.com",
                       isBodyHtml: true
                     );
             }

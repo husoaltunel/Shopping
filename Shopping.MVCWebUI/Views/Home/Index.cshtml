@@ -13,9 +13,9 @@
             <div class="container">
                 <div class="row flex-column">
                     <p class="lead">
-                        <h3>Siz İsteyin Biz getirelim . Yenilikci Tedarikcim Kıbrıs da hizmetinizde</h3>
+                        <h3>Siz İsteyin Biz getirelim.</h3>
                     </p>
-                    <a style="margin-top:3rem;" href="tel://05391044919"><img style="width:20rem;" src="~/Upload/tedarikcim-whatsapp.jpg" /></a>
+                    <a style="margin-top:3rem;" href="tel://05373349560"><img src="~/Upload/whatsapp.jpg" style="width:230px;" /></a>
                 </div>
             </div>
         </div>
@@ -110,29 +110,8 @@
 <!-- body -->
 <div class="row">
     <div class="categories col-md-3 p-0 flex-column">
+
         @Html.Action("Categories", "Home")
-
-        <div class="shippingTel mt-3">
-            <div>
-
-                <a href=" https://wa.me/message/BVZ5LCVEXQGKH1">
-                    <h5>
-                        <strong>
-                            <img src="~/Upload/whatsapp.jpg" />
-                        </strong>
-                    </h5>
-                </a>
-            </div>
-            <div>
-                <a href="tel://05391044919">
-                    <h5>
-                        <strong>
-                            <img src="~/Upload/tedarikcim-whatsapp.jpg" style="width:230px;" />
-                        </strong>
-                    </h5>
-                </a>
-            </div>
-        </div>
 
     </div>
     <div class="col-md-2 showSubCategories bg-light">
@@ -164,34 +143,7 @@
             </div>
             @Html.Partial("_ProductList", Model)
         }
-        <div class="videos">
-            <video controls="controls">
-                <source src="~/Upload/movie.mp4" type="video/mp4" />
-                <source src="movie.ogg" type="video/ogg">
-                Tarayıcınız bu özelliği desteklemiyor.
-            </video>
 
-            <video controls="controls">
-                <source src="~/Upload/movie3.mp4" type="video/mp4" />
-                <source src="movie.ogg" type="video/ogg">
-                Tarayıcınız bu özelliği desteklemiyor.
-            </video>
-            <video controls="controls">
-                <source src="~/Upload/movie4.mp4" type="video/mp4" />
-                <source src="movie.ogg" type="video/ogg">
-                Tarayıcınız bu özelliği desteklemiyor.
-            </video>
-            <video controls="controls">
-                <source src="~/Upload/movie5.mp4" type="video/mp4" />
-                <source src="movie.ogg" type="video/ogg">
-                Tarayıcınız bu özelliği desteklemiyor.
-            </video>
-            <video controls="controls">
-                <source src="~/Upload/movie6.mp4" type="video/mp4" />
-                <source src="movie.ogg" type="video/ogg">
-                Tarayıcınız bu özelliği desteklemiyor.
-            </video>
-        </div>
 
     </div>
     @if (Model.Count() != 0)
@@ -286,6 +238,9 @@
             var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
 
         })();
+         $(".searchButton").click(function () {
+            $("body").load("@Request.Url.AbsoluteUri", { searchText: $(".searchInput").val() });
+        });
 
     });
 

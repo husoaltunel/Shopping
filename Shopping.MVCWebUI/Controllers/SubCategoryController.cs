@@ -40,8 +40,8 @@ namespace Shopping.MVCWebUI.Controllers
         // GET: SubCategory/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories.AsNoTracking(), "Id", "Name");
-            return View();
+            ViewBag.CategoryId = new SelectList(db.Categories.AsNoTracking().Where(s => s.IsActive == EnumIsActiveState.Active), "Id", "Name");
+            return View(new SubCategory());
         }
 
         // POST: SubCategory/Create
@@ -74,7 +74,7 @@ namespace Shopping.MVCWebUI.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories.AsNoTracking(), "Id", "Name", subCategory.CategoryId);
+            ViewBag.CategoryId = new SelectList(db.Categories.AsNoTracking().Where(s => s.IsActive == EnumIsActiveState.Active), "Id", "Name", subCategory.CategoryId);
             return View(subCategory);
         }
 
